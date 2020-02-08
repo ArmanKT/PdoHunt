@@ -1,0 +1,25 @@
+{
+  "name": "armankt/pdohunt",
+  "type": "library",
+  "description": "Powerfull Query Builder, A Built in PDO Class for PHP.",
+  "keywords": ["php","pdo","sql","query","builder"],
+  "homepage": "https://github.com/ArmanKT/PdoHunt",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Arman Khan TOnmoy",
+      "email": "armansr@hotmail.com",
+      "homepage": "http://arman.pw"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Arman\\": "src"
+    }
+  },
+  "minimum-stability": "dev"
+}
