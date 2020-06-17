@@ -10,7 +10,7 @@ composer.json file:
 ```json
 {
     "require": {
-        "armankt/pdohunt": "^1.0"
+        "armankt/pdohunt": "^1.1"
     }
 }
 ```
