@@ -10,9 +10,6 @@
  * @url      <https://github.com/ArmanKT/PdoHunt>
  * @license  The MIT License (MIT) - <http://opensource.org/licenses/MIT>
  */
-
-
-
 namespace Arman;
 
 use Closure;
@@ -22,11 +19,9 @@ use PDOException;
 class PdoHunt implements Face
 {
     /**
-     * PDOx Version
-     *
      * @var string
      */
-    const VERSION = '1.2';
+    const VERSION = '1.4.3';
 
     /**
      * @var PDO|null
@@ -94,7 +89,9 @@ class PdoHunt implements Face
         $config['host'] = (isset($config['host']) ? $config['host'] : 'localhost');
         $config['charset'] = (isset($config['charset']) ? $config['charset'] : 'utf8');
         $config['collation'] = (isset($config['collation']) ? $config['collation'] : 'utf8_general_ci');
-        $config['port'] = (strstr($config['host'], ':') ? explode(':', $config['host'])[1] : '');
+        $config['port'] = isset($config['port'])
+            ? $config['port']
+            : (strstr($config['host'], ':') ? explode(':', $config['host'])[1] : '');
         $this->prefix = (isset($config['prefix']) ? $config['prefix'] : '');
         $this->cacheDir = (isset($config['cachedir']) ? $config['cachedir'] : __DIR__ . '/cache/');
         $this->debug = (isset($config['debug']) ? $config['debug'] : true);
@@ -102,7 +99,7 @@ class PdoHunt implements Face
         $dsn = '';
 
         if ($config['driver'] == 'mysql' || $config['driver'] == '' || $config['driver'] == 'pgsql') {
-            $dsn = $config['driver'] . ':host=' . $config['host'] . ';'
+            $dsn = $config['driver'] . ':host=' . str_replace(":" . $config['port'], "", $config['host']) . ';'
                 . (($config['port']) != '' ? 'port=' . $config['port'] . ';' : '')
                 . 'dbname=' . $config['database'];
         } elseif ($config['driver'] == 'sqlite') {
